@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route , NavLink } from "react-router-dom";
+import "./App.css" ;
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import CreateNote from "./components/create-note";
+import List from "./components/list";
+
+
+
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div >
+          <nav style={{margin:"unset",opacity:"0.8"}} className="navbar navbar-expand-sm navbar-dark bg-dark">
+            <h4 className="navbar-logo">App</h4>
+            <div className="collpase navbar-collapse">
+              <ul className="navbar-nav mr-auto">
+                
+                <li className="navbar-item">
+
+                  <NavLink exact activeStyle={{color:"rgb(188, 256, 273)"}} to="/" className="nav-link">Notes</NavLink>
+                </li>
+                <li className="navbar-item">
+                  <NavLink activeStyle={{color:"rgb(188, 256, 273)"}} to="/create" className="nav-link">Create Note</NavLink>
+                </li>
+       
+              </ul>
+            </div>
+          </nav>
+          <br/>
+          <Route path="/" exact component={List} />
+          
+          <Route path="/create" component={CreateNote} />
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
